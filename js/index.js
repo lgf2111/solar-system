@@ -1,36 +1,28 @@
-// This nine-name list duplicates the VALID set in planet.js and must stay in sync.
-let planets = [
-  'sun',
-  'mercury',
-  'venus',
-  'earth',
-  'mars',
-  'jupiter',
-  'saturn',
-  'uranus',
-  'neptune',
-];
-let planetList = document.querySelector('.planet');
-let showPlanets = false;
+// Drives the home-page planet browser in the shared bottom nav. The 9 planet
+// buttons are static markup in index.html (data-planet="<name>"); this script
+// toggles the popover, keeps aria-expanded in sync, closes on Escape / outside
+// click, and delegates clicks to navigate to planet.html?planet=<name>.
+const toggle = document.querySelector('#planet-toggle');
+const menu = document.querySelector('#planet-menu');
 
-function togglePlanets() {
-  if (!planetList) {
-    return;
-  }
-  if (!showPlanets) {
-    planetList.innerHTML = planets
-      .map((planet) => {
-        const name = planet.charAt(0).toUpperCase() + planet.slice(1);
-        if (planet === 'sun') {
-          return `<li><button data-planet="${planet}">${name} (Star)</button></li>`;
-        }
-        return `<li><button data-planet="${planet}">${name}</button></li>`;
-      })
-      .join('');
-    showPlanets = true;
+function openMenu() {
+  if (!menu || !toggle) return;
+  menu.hidden = false;
+  toggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeMenu() {
+  if (!menu || !toggle) return;
+  menu.hidden = true;
+  toggle.setAttribute('aria-expanded', 'false');
+}
+
+function toggleMenu() {
+  if (!menu) return;
+  if (menu.hidden) {
+    openMenu();
   } else {
-    planetList.innerHTML = '';
-    showPlanets = false;
+    closeMenu();
   }
 }
 
@@ -41,19 +33,25 @@ function openPlanetPage(planet) {
 function handlePlanetClick(event) {
   const button = event.target.closest('button[data-planet]');
   if (button) {
-    const planet = button.getAttribute('data-planet');
-    openPlanetPage(planet);
+    openPlanetPage(button.getAttribute('data-planet'));
   }
 }
 
-function setupEventListeners() {
-  const toggle = document.querySelector('.planets');
-  if (toggle) {
-    toggle.addEventListener('click', togglePlanets);
-  }
-  if (planetList) {
-    planetList.addEventListener('click', handlePlanetClick);
-  }
-}
+if (toggle && menu) {
+  toggle.addEventListener('click', toggleMenu);
+  menu.addEventListener('click', handlePlanetClick);
 
-setupEventListeners();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !menu.hidden) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (menu.hidden) return;
+    if (!menu.contains(event.target) && event.target !== toggle) {
+      closeMenu();
+    }
+  });
+}
