@@ -139,7 +139,16 @@
   list-style-type: none;
   padding-top: 0.2em;
 }
-.grid .planet li:hover {
+.grid .planet li button {
+  all: unset;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.grid .planet li:hover, .grid .planet li:focus-within {
   cursor: pointer;
   animation: neon2 1.5s ease-in-out infinite alternate;
   color: #ffffff;
@@ -149,10 +158,21 @@
   grid-area: planets;
   color: white;
 }
-.grid .planets:hover {
+.grid button.planets {
+  all: unset;
+  display: block;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.grid .planets:hover, .grid .planets:focus-visible {
   cursor: pointer;
   animation: neon2 1.5s ease-in-out infinite alternate;
   color: #ffffff;
+}
+.grid .planet li button:focus-visible, .grid button.planets:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 .grid a {
   text-decoration: none;

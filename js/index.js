@@ -4,13 +4,17 @@ let planetList = document.querySelector('.planet');
 let showPlanets = false;
 
 function togglePlanets() {
+    if (!planetList) {
+        return;
+    }
     if (!showPlanets) {
         planetList.innerHTML = planets
             .map(planet => {
+                const name = planet.charAt(0).toUpperCase() + planet.slice(1);
                 if (planet === 'sun') {
-                    return `<li id=${planet}>${planet.charAt(0).toUpperCase() + planet.slice(1)} (Star)</li>`;
+                    return `<li><button data-planet="${planet}">${name} (Star)</button></li>`;
                 }
-                return `<li id=${planet}>${planet.charAt(0).toUpperCase() + planet.slice(1)}</li>`;
+                return `<li><button data-planet="${planet}">${name}</button></li>`;
             })
             .join('');
         showPlanets = true;
@@ -25,15 +29,21 @@ function openPlanetPage(planet) {
 }
 
 function handlePlanetClick(event) {
-    if (event.target && event.target.matches('li')) {
-        const planet = event.target.id;
+    const button = event.target.closest('button[data-planet]');
+    if (button) {
+        const planet = button.getAttribute('data-planet');
         openPlanetPage(planet);
     }
 }
 
 function setupEventListeners() {
-    document.querySelector(".planets").addEventListener("click", togglePlanets);
-    planetList.addEventListener("click", handlePlanetClick);
+    const toggle = document.querySelector('.planets');
+    if (toggle) {
+        toggle.addEventListener('click', togglePlanets);
+    }
+    if (planetList) {
+        planetList.addEventListener('click', handlePlanetClick);
+    }
 }
 
 setupEventListeners();

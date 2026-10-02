@@ -3,16 +3,16 @@ import * as THREE from 'three';
 import {
   OrbitControls
 } from 'three/examples/jsm/controls/OrbitControls.js';
-import sunTextureUrl from '../images/texture/sun.jpg';
+import sunTextureUrl from '../images/texture/sun.webp';
 import mercuryTextureUrl from '../images/texture/mercury.jpg';
-import venusTextureUrl from '../images/texture/venus.jpg';
-import earthTextureUrl from '../images/texture/earth.jfif';
-import marsTextureUrl from '../images/texture/mars.jpg';
-import jupiterTextureUrl from '../images/texture/jupiter.jfif';
-import saturnTextureUrl from '../images/texture/saturn.jfif';
-import ringTextureUrl from '../images/texture/ring.jfif';
-import uranusTextureUrl from '../images/texture/uranus.jpg';
-import neptuneTextureUrl from '../images/texture/neptune.jpg';
+import venusTextureUrl from '../images/texture/venus.webp';
+import earthTextureUrl from '../images/texture/earth.jpg';
+import marsTextureUrl from '../images/texture/mars.webp';
+import jupiterTextureUrl from '../images/texture/jupiter.webp';
+import saturnTextureUrl from '../images/texture/saturn.webp';
+import ringTextureUrl from '../images/texture/ring.webp';
+import uranusTextureUrl from '../images/texture/uranus.webp';
+import neptuneTextureUrl from '../images/texture/neptune.webp';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
