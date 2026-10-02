@@ -3,24 +3,24 @@
         "sun": {
             "size": 696340,
             "diameter": 1392700,
-            "rotation": 7.19
+            "rotation": 7189
         },
         "mercury": {
             "size": 2440,
             "diameter": 4879,
-            "rotation": 10.9,
+            "rotation": 11,
             "perihelion": 46000000
         },
         "venus": {
             "size": 6052,
             "diameter": 12104,
-            "rotation": 6.52,
+            "rotation": 7,
             "perihelion": 107000000
         },
         "earth": {
             "size": 6371,
             "diameter": 12742,
-            "rotation": 1656,
+            "rotation": 1674,
             "perihelion": 147000000
         },
         "mars": {
@@ -32,25 +32,25 @@
         "jupiter": {
             "size": 69911,
             "diameter": 139820,
-            "rotation": 43000,
+            "rotation": 45259,
             "perihelion": 741000000
         },
         "saturn": {
             "size": 58232,
             "diameter": 116460,
-            "rotation": 35.5,
+            "rotation": 35532,
             "perihelion": 1353000000
         },
         "uranus": {
             "size": 25362,
             "diameter": 50740,
-            "rotation": 24607,
+            "rotation": 9324,
             "perihelion": 2741000000
         },
         "neptune": {
             "size": 24622,
             "diameter": 49244,
-            "rotation": 6.95,
+            "rotation": 9648,
             "perihelion": 4444000000
         }
     },

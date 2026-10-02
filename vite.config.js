@@ -2,14 +2,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    build: {
-        rollupOptions: {
-            input: {
-                index: 'index.html',
-                feedback: 'feedback.html',
-                info: 'info.html',
-                planet: 'planet.html',
-            },
-        },
+  build: {
+    rollupOptions: {
+      input: {
+        index: 'index.html',
+        feedback: 'feedback.html',
+        info: 'info.html',
+        planet: 'planet.html',
+      },
     },
+  },
 });

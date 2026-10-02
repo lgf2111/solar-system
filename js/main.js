@@ -1,8 +1,6 @@
-import '../css/main.css'
+import '../css/main.css';
 import * as THREE from 'three';
-import {
-  OrbitControls
-} from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import sunTextureUrl from '../images/texture/sun.webp';
 import mercuryTextureUrl from '../images/texture/mercury.jpg';
 import venusTextureUrl from '../images/texture/venus.webp';
@@ -17,7 +15,7 @@ import neptuneTextureUrl from '../images/texture/neptune.webp';
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg')
+  canvas: document.querySelector('#bg'),
 });
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(ambientLight);
@@ -30,7 +28,8 @@ camera.position.setZ(30);
 // loads (nine spheres + the ring). A failed load leaves the mesh untextured and
 // logs one console.warn naming the URL; nothing is thrown and the loop keeps running.
 const loader = new THREE.TextureLoader();
-const onTexError = (url) => (err) => console.warn(`[solar-system] texture failed to load: ${url}`, err);
+const onTexError = (url) => (err) =>
+  console.warn(`[solar-system] texture failed to load: ${url}`, err);
 
 const BODIES = [
   { name: 'sun', radius: 100, pos: [-170, 120], texture: sunTextureUrl, spin: 0.00007 },
@@ -48,8 +47,8 @@ BODIES.forEach((body) => {
   const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(body.radius, 100, 100),
     new THREE.MeshBasicMaterial({
-      map: loader.load(body.texture, undefined, undefined, onTexError(body.texture))
-    })
+      map: loader.load(body.texture, undefined, undefined, onTexError(body.texture)),
+    }),
   );
   mesh.position.x = body.pos[0];
   mesh.position.y = body.pos[1];
@@ -63,8 +62,8 @@ const ring = new THREE.Mesh(
   new THREE.RingGeometry(6, 10, 100),
   new THREE.MeshBasicMaterial({
     map: loader.load(ringTextureUrl, undefined, undefined, onTexError(ringTextureUrl)),
-    side: THREE.DoubleSide
-  })
+    side: THREE.DoubleSide,
+  }),
 );
 ring.position.x = 20.6;
 ring.position.y = 7;
@@ -82,7 +81,7 @@ const starGeometry = new THREE.BufferGeometry();
 starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
 const stars = new THREE.Points(
   starGeometry,
-  new THREE.PointsMaterial({ color: 0xffffff, size: 0.5, sizeAttenuation: true })
+  new THREE.PointsMaterial({ color: 0xffffff, size: 0.5, sizeAttenuation: true }),
 );
 scene.add(stars);
 

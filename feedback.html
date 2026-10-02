@@ -1,49 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feedback</title>
     <style>
-        body {
-            width: 97vw;
-            height: 97vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        table {
-            border: solid 1px;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: solid 1px;
-        }
-        /* td {
+      body {
+        width: 97vw;
+        height: 97vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      table {
+        border: solid 1px;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: solid 1px;
+      }
+      /* td {
             height: 86vh;
             width: 100vh;
         } */
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <table>
-        <tr>
-            <th>Rating</th>
-            <th>Feedback</th>
-        </tr>
-        <tr>
-            <td id="rating"></td>
-            <td id="feedback"></td>
-        </tr>
+      <tr>
+        <th>Rating</th>
+        <th>Feedback</th>
+      </tr>
+      <tr>
+        <td id="rating"></td>
+        <td id="feedback"></td>
+      </tr>
     </table>
     <script>
-        'use strict';
-        const params = new URLSearchParams(location.search);
-        const rating = params.get('rating') ?? '';
-        const feedback = params.get('feedback') ?? '';
-        document.querySelector('#rating').textContent = rating;
-        document.querySelector('#feedback').textContent = feedback;
+      'use strict';
+      const params = new URLSearchParams(location.search);
+      const rating = params.get('rating') ?? '';
+      const feedback = params.get('feedback') ?? '';
+      document.querySelector('#rating').textContent = rating;
+      document.querySelector('#feedback').textContent = feedback;
     </script>
-</body>
+  </body>
 </html>
