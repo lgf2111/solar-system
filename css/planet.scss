@@ -1,318 +1,243 @@
-* {
-    font-family: 'Courier New', Courier, monospace;
-}
+// Per-planet page styles. Design tokens + global reset live in css/theme.css
+// (linked before this file). There is no sass build in this project, so
+// css/planet.css is hand-written to mirror this source — keep the two in sync.
 
+// Space backdrop layers on the dark space background.
 .bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  .stars,
+  .twinkling,
+  .clouds {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .stars {
+    z-index: 0;
+    background-color: var(--bg-space);
+  }
+
+  .twinkling {
     z-index: 1;
+    animation: move-twink-back 200s linear infinite;
+  }
 
-    .stars,
-    .twinkling,
-    .clouds {
-        position: absolute;
-        display: block;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
+  .clouds {
+    z-index: 2;
+    animation: move-clouds-back 200s linear infinite;
+  }
+
+  @keyframes move-twink-back {
+    from {
+      background-position: 0 0;
     }
 
-    .stars {
-        z-index: 0;
-        // background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top center;
-        background-color: #000;
+    to {
+      background-position: -10000px 5000px;
+    }
+  }
+
+  @keyframes move-clouds-back {
+    from {
+      background-position: 0 0;
     }
 
-    .twinkling {
-        z-index: 1;
-        // background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png") repeat top center;
-        animation: move-twink-back 200s linear infinite;
+    to {
+      background-position: 10000px 0;
     }
-
-    .clouds {
-        z-index: 2;
-        // background: transparent url("https://image.ibb.co/bT4N7T/clouds.png") repeat top center;
-        animation: move-clouds-back 200s linear infinite;
-    }
-
-    @keyframes move-twink-back {
-        from {
-            background-position: 0 0;
-        }
-
-        to {
-            background-position: -10000px 5000px;
-        }
-    }
-
-    @keyframes move-clouds-back {
-        from {
-            background-position: 0 0;
-        }
-
-        to {
-            background-position: 10000px 0;
-        }
-    }
+  }
 }
 
 .content {
-    z-index: 2;
-    position: absolute;
-    display: grid;
-    width: 99%;
-    height: 98%;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1.5fr 3.5fr 2.5fr 0.5fr 1fr;
-    grid-template-areas:
-        'extra name extra2'
-        'extra3 spec img'
-        'extra4 fact extra5';
-    align-items: center;
-    justify-items: center;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
 
-    .name {
-        position: absolute;
-        grid-area: name;
-        color: white;
+  .name {
+    h1 {
+      margin: 0;
+      font-size: 2rem;
     }
+  }
 
-    .spec {
-        position: absolute;
-        grid-area: spec;
-        color: white;
+  .img img {
+    display: block;
+    border-radius: var(--radius);
+  }
+
+  .spec {
+    padding: var(--space-4) var(--space-6);
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    line-height: 1.7;
+
+    a {
+      display: inline-block;
+      margin-top: var(--space-3);
+      color: var(--accent);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--accent-2);
+      }
     }
-
-    .img {
-        position: absolute;
-        grid-area: img;
-        color: white;
-    }
-
-    // .fact {
-    //     z-index: 99;
-    //     position: absolute;
-    //     grid-area: fact;
-    //     color: white;
-    //     text-align: center;
-    //     height: 100%;
-    //     width: 100%;
-    //     overflow-y: scroll;
-    //     // h3, p {
-    //     //     animation: slide infinite 1s alternate;
-    //     //     @keyframes slide {
-    //     //         0% {
-    //     //             margin-top: 0px;
-    //     //         }
-    //     //         100% {
-    //     //             margin-top: -1em;
-    //     //         }
-    //     //     }
-    //     // }
-    // }
+  }
 }
 
 .fact {
-    z-index: 99;
-    position: fixed;
-    height: 40%;
-    width: 50%;
-    color: white;
-    left: 28%;
-    bottom: 15%;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-        display: none; //chrome, safari, opera
-    }
+  width: 100%;
+  max-width: 560px;
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 
-    -ms-overflow-style: none; // ie, edge
-    scrollbar-width: none; // firefox
+  h3 {
+    margin: 0 0 var(--space-2);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 0 0 var(--space-3);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
 }
 
-.grid {
-    z-index: 2;
-    position: absolute;
-    display: grid;
-    width: 99%;
-    height: 98%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 6fr 3fr 1fr;
-    grid-template-areas:
-        'extra extra extra'
-        'extra2 button planet'
-        'index info planets';
-    align-items: center;
-    justify-items: center;
+.more-facts {
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--accent);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--bg-elev);
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
 
-    .active {
-        cursor: pointer;
-        -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-        -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-        animation: neon2 1.5s ease-in-out infinite alternate;
-        color: #ffffff;
-    }
+  &:hover {
+    background: var(--bg-panel);
+    color: var(--accent-2);
+  }
 
-    .index {
-        position: absolute;
-        grid-area: index;
-        cursor: pointer;
-        color: white;
+  &:active {
+    transform: scale(0.95);
+  }
 
-        &:hover {
-            cursor: pointer;
-            -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-            -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-            animation: neon2 1.5s ease-in-out infinite alternate;
-            color: #ffffff;
-        }
-    }
-
-    .info {
-        position: absolute;
-        grid-area: info;
-        color: white;
-
-        &:hover {
-            cursor: pointer;
-            -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-            -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-            animation: neon2 1.5s ease-in-out infinite alternate;
-            color: #ffffff;
-        }
-    }
-
-    .planet {
-        position: absolute;
-        grid-area: planet;
-        align-self: flex-end;
-        color: white;
-
-        li {
-            text-align: center;
-            list-style-type: none;
-            padding-top: 0.2em;
-
-            button {
-                all: unset;
-                display: block;
-                width: 100%;
-                text-align: center;
-                color: inherit;
-                cursor: pointer;
-                font: inherit;
-
-                &:focus-visible {
-                    outline: 2px solid #ffffff;
-                    outline-offset: 2px;
-                }
-            }
-        }
-
-        li:hover, li:focus-within {
-            cursor: pointer;
-            -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-            -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-            animation: neon2 1.5s ease-in-out infinite alternate;
-            color: #ffffff;
-        }
-    }
-
-    button.planets {
-        all: unset;
-        display: block;
-        color: inherit;
-        cursor: pointer;
-        font: inherit;
-
-        &:focus-visible {
-            outline: 2px solid #ffffff;
-            outline-offset: 2px;
-        }
-    }
-
-    .planets {
-        position: absolute;
-        grid-area: planets;
-        color: white;
-
-        &:hover, &:focus-visible {
-            cursor: pointer;
-            -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-            -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-            animation: neon2 1.5s ease-in-out infinite alternate;
-            color: #ffffff;
-        }
-    }
-
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    .button {
-        grid-area: button;
-        align-self: flex-end;
-
-        button {
-            color: white;
-            background-image: url(../images/gradient.jpg);
-            background-size: 100px 100px;
-            border: none;
-            border-radius: 1rem;
-            padding: 0.3rem;
-
-            &:hover {
-                cursor: pointer;
-                -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-                -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-                animation: neon2 1.5s ease-in-out infinite alternate;
-                color: #ffffff;
-            }
-        }
-
-        &:active {
-            transform: scale(0.95);
-        }
-
-    }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
 }
 
+// Shared bottom nav bar (markup shared with index.html / info.html).
+.site-nav {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  bottom: var(--space-6);
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2);
+  background: rgba(13, 17, 32, 0.72);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
 
+  .nav-link {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: calc(var(--radius) - 4px);
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
 
-
-@-webkit-keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff,
-            0 0 70px #228dff, 0 0 80px #228dff, 0 0 100px #228dff, 0 0 150px #228dff;
+    &:hover {
+      color: var(--accent);
+      background: var(--bg-elev);
     }
 
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff,
-            0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
+    &[aria-current='page'] {
+      color: var(--accent);
     }
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+  }
 }
 
-@-moz-keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff,
-            0 0 70px #228dff, 0 0 80px #228dff, 0 0 100px #228dff, 0 0 150px #228dff;
-    }
-
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff,
-            0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
-    }
+.nav-planets {
+  position: relative;
 }
 
-@keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff,
-            0 0 70px #228dff, 0 0 80px #228dff, 0 0 100px #228dff, 0 0 150px #228dff;
+.planet-menu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + var(--space-2));
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+  min-width: 180px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  li + li {
+    margin-top: 2px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    border-radius: calc(var(--radius) - 6px);
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent);
+      background: var(--bg-elev);
     }
 
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff,
-            0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
+    &:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
     }
+  }
 }

@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/info.css" />
-    <title id="title">Solar System</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="./css/theme.css" />
+    <link rel="stylesheet" href="./css/info.css" />
+    <title id="title">About Solar System</title>
   </head>
   <body>
     <div class="bg">
@@ -13,7 +15,7 @@
       <div class="twinkling"></div>
       <div class="clouds"></div>
     </div>
-    <div class="content">
+    <main class="content">
       <div class="name"><h1 id="name">About Solar System</h1></div>
       <div class="main">
         <p>
@@ -30,58 +32,83 @@
           disc called the ecliptic.
         </p>
       </div>
-    </div>
-    <div class="grid">
       <div class="table">
-        <table border="1">
-          <tr>
-            <th>Planets</th>
-            <th>Image</th>
-          </tr>
-          <tr>
-            <td>Sun (Star)</td>
-            <td><img src="images/planets/sun.png" alt="Sun" /></td>
-          </tr>
-          <tr>
-            <td>Mercury</td>
-            <td><img src="images/planets/mercury.png" alt="Mercury" /></td>
-          </tr>
-          <tr>
-            <td>Venus</td>
-            <td><img src="images/planets/venus.png" alt="Venus" /></td>
-          </tr>
-          <tr>
-            <td>Earth</td>
-            <td><img src="images/planets/earth.png" alt="Earth" /></td>
-          </tr>
-          <tr>
-            <td>Mars</td>
-            <td><img src="images/planets/mars.png" alt="Mars" /></td>
-          </tr>
-          <tr>
-            <td>Jupiter</td>
-            <td><img src="images/planets/jupiter.png" alt="Jupiter" /></td>
-          </tr>
-          <tr>
-            <td>Saturn</td>
-            <td><img src="images/planets/saturn.png" alt="Saturn" /></td>
-          </tr>
-          <tr>
-            <td>Uranus</td>
-            <td><img src="images/planets/uranus.png" alt="Uranus" /></td>
-          </tr>
-          <tr>
-            <td>Neptune</td>
-            <td><img src="images/planets/neptune.png" alt="Neptune" /></td>
-          </tr>
+        <table>
+          <thead>
+            <tr>
+              <th>Planets</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sun (Star)</td>
+              <td><img src="images/planets/sun.png" alt="Sun" /></td>
+            </tr>
+            <tr>
+              <td>Mercury</td>
+              <td><img src="images/planets/mercury.png" alt="Mercury" /></td>
+            </tr>
+            <tr>
+              <td>Venus</td>
+              <td><img src="images/planets/venus.png" alt="Venus" /></td>
+            </tr>
+            <tr>
+              <td>Earth</td>
+              <td><img src="images/planets/earth.png" alt="Earth" /></td>
+            </tr>
+            <tr>
+              <td>Mars</td>
+              <td><img src="images/planets/mars.png" alt="Mars" /></td>
+            </tr>
+            <tr>
+              <td>Jupiter</td>
+              <td><img src="images/planets/jupiter.png" alt="Jupiter" /></td>
+            </tr>
+            <tr>
+              <td>Saturn</td>
+              <td><img src="images/planets/saturn.png" alt="Saturn" /></td>
+            </tr>
+            <tr>
+              <td>Uranus</td>
+              <td><img src="images/planets/uranus.png" alt="Uranus" /></td>
+            </tr>
+            <tr>
+              <td>Neptune</td>
+              <td><img src="images/planets/neptune.png" alt="Neptune" /></td>
+            </tr>
+          </tbody>
         </table>
       </div>
-      <div class="index"><a href="index.html">The Solar System</a></div>
-      <div class="info active">About Solar System</div>
-      <div class="planet"></div>
-      <button class="planets">About Planets</button>
-      <script src="./js/index.js" type="module"></script>
-    </div>
-    <!-- <script src="./js/info.js" type="module"></script> -->
+    </main>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="index.html">The Solar System</a>
+      <a class="nav-link" href="info.html" aria-current="page">About Solar System</a>
+      <div class="nav-planets">
+        <button
+          id="planet-toggle"
+          class="nav-link"
+          type="button"
+          aria-expanded="false"
+          aria-controls="planet-menu"
+        >
+          Planets
+        </button>
+        <ul id="planet-menu" class="planet-menu" hidden>
+          <li><button type="button" data-planet="sun">Sun (Star)</button></li>
+          <li><button type="button" data-planet="mercury">Mercury</button></li>
+          <li><button type="button" data-planet="venus">Venus</button></li>
+          <li><button type="button" data-planet="earth">Earth</button></li>
+          <li><button type="button" data-planet="mars">Mars</button></li>
+          <li><button type="button" data-planet="jupiter">Jupiter</button></li>
+          <li><button type="button" data-planet="saturn">Saturn</button></li>
+          <li><button type="button" data-planet="uranus">Uranus</button></li>
+          <li><button type="button" data-planet="neptune">Neptune</button></li>
+        </ul>
+      </div>
+    </nav>
+
+    <script src="./js/index.js" type="module"></script>
   </body>
 </html>

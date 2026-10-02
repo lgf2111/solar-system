@@ -6,7 +6,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: 'index.html',
-        feedback: 'feedback.html',
         info: 'info.html',
         planet: 'planet.html',
       },

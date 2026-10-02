@@ -10,6 +10,7 @@ const title = document.querySelector('#title');
 const spec = document.querySelector('.spec');
 const img = document.querySelector('.img');
 const fact = document.querySelector('#fact');
+const moreFacts = document.querySelector('#more-facts');
 
 // Get planet name from URL query param
 const planet = new URLSearchParams(location.search).get('planet');
@@ -31,21 +32,22 @@ const VALID = new Set([
 if (!planet || !VALID.has(planet) || !planetDict[planet]) {
   document.title = 'Planet not found';
   header.innerText = 'Planet not found';
-  title.innerText = 'Planet not found';
-  spec.innerHTML = '<a href="index.html">The Solar System</a>';
+  spec.innerHTML =
+    '<p>We could not find that planet.</p><a href="index.html">Back to The Solar System</a>';
+  moreFacts?.remove();
 } else {
   const planetNameCapitalized = planet.charAt(0).toUpperCase() + planet.slice(1);
 
-  // Update header and title
-  header.innerText += ` ${planetNameCapitalized}`;
-  title.innerText += ` ${planetNameCapitalized}`;
+  // Update header and document title
+  header.innerText = planetNameCapitalized;
+  title.innerText = planetNameCapitalized;
 
   // Update planet image
   const imgUrl = new URL(`/images/planets/${planet}.png`, import.meta.url);
   img.innerHTML = `<img src="${imgUrl}" alt="${planetNameCapitalized}" width="180">`;
 
   // Update planet specifications
-  spec.innerHTML += `Planet Name: ${planetNameCapitalized}`;
+  spec.innerHTML = `Planet Name: ${planetNameCapitalized}`;
   spec.innerHTML += `<br>Mean radius: ${planetDict[planet]['size']} km`;
   spec.innerHTML += `<br>Diameter: ${planetDict[planet]['diameter']}km`;
   spec.innerHTML += `<br>Rotation Speed: ${planetDict[planet]['rotation']}km/h`;
@@ -53,13 +55,13 @@ if (!planet || !VALID.has(planet) || !planetDict[planet]) {
     spec.innerHTML += `<br>Distance to the Sun: ${planetDict[planet]['perihelion'] / 1000000}mil km`;
   }
 
-  // Update fun fact
-  fact.innerHTML += `<h3>Fun Fact</h3><hr><p>${funFact[planet][Math.floor(Math.random() * funFact[planet].length)]}</p>`;
-
-  // Change fun fact
-  function changeFact() {
+  // Render a random fun fact
+  function renderFact() {
     fact.innerHTML = `<h3>Fun Fact</h3><hr><p>${funFact[planet][Math.floor(Math.random() * funFact[planet].length)]}</p>`;
   }
 
-  document.querySelector('#more-facts')?.addEventListener('click', changeFact);
+  renderFact();
+
+  // Change fun fact on demand
+  moreFacts?.addEventListener('click', renderFact);
 }

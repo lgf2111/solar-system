@@ -1,9 +1,12 @@
-* {
-  font-family: "Courier New", Courier, monospace;
-}
+/* About page styles. Design tokens + global reset live in css/theme.css
+   (linked before this file). Hand-written to mirror css/info.scss (no sass
+   build in repo) — keep the two in sync when editing. */
 
+/* Space backdrop layers on the dark space background. */
 .bg {
-  z-index: 1;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 .bg .stars,
 .bg .twinkling,
@@ -19,7 +22,7 @@
 }
 .bg .stars {
   z-index: 0;
-  background-color: #000;
+  background-color: var(--bg-space);
 }
 .bg .twinkling {
   z-index: 1;
@@ -47,159 +50,140 @@
 }
 
 .content {
-  z-index: 3;
-  position: absolute;
-  display: grid;
-  width: 98%;
-  height: 50%;
-  grid-template-columns: 0.1fr 0.9fr 2fr 0.9fr 0.1fr;
-  grid-template-rows: 1.5fr 3.5fr;
-  grid-template-areas: "extra extra name extra2 extra2" "extra3 main main main extra4";
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) 120px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  gap: var(--space-6);
 }
-.content .name {
-  position: absolute;
-  grid-area: name;
-  color: white;
-}
-.content .main {
-  position: absolute;
-  grid-area: main;
-  color: white;
+.content .name h1 {
+  margin: 0;
+  font-size: 2rem;
   text-align: center;
-  height: 98%;
-  width: 98%;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
-.content .main::-webkit-scrollbar {
-  display: none;
+.content .main p {
+  margin: 0;
+  line-height: 1.7;
+  text-align: justify;
 }
 
-.grid {
-  z-index: 2;
-  position: absolute;
-  display: grid;
-  width: 98%;
-  height: 98%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 5fr 4fr 1fr;
-  grid-template-areas: "extra extra extra" "table table planet" "index info planets";
-  align-items: center;
-  justify-items: center;
-}
-.grid .active {
-  cursor: pointer;
-  animation: neon2 1.5s ease-in-out infinite alternate;
-  color: #ffffff;
-}
-.grid .index {
-  position: absolute;
-  grid-area: index;
-  cursor: pointer;
-  color: white;
-}
-.grid .index:hover {
-  cursor: pointer;
-  animation: neon2 1.5s ease-in-out infinite alternate;
-  color: #ffffff;
-}
-.grid .info {
-  position: absolute;
-  grid-area: info;
-  color: white;
-}
-.grid .info:hover {
-  cursor: pointer;
-  animation: neon2 1.5s ease-in-out infinite alternate;
-  color: #ffffff;
-}
-.grid .planet {
-  position: absolute;
-  align-self: flex-end;
-  grid-area: planet;
-  color: white;
-}
-.grid .planet li {
-  text-align: center;
-  list-style-type: none;
-  padding-top: 0.2em;
-}
-.grid .planet li button {
-  all: unset;
-  display: block;
+.table {
   width: 100%;
+}
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table th,
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
   text-align: center;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
 }
-.grid .planet li:hover, .grid .planet li:focus-within {
-  cursor: pointer;
-  animation: neon2 1.5s ease-in-out infinite alternate;
-  color: #ffffff;
+.table th {
+  width: 50%;
+  background: var(--bg-elev);
+  color: var(--text);
 }
-.grid .planets {
-  position: absolute;
-  grid-area: planets;
-  color: white;
+.table tbody tr:nth-child(even) {
+  background: rgba(22, 28, 51, 0.5);
 }
-.grid button.planets {
-  all: unset;
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table img {
   display: block;
-  color: inherit;
-  cursor: pointer;
+  margin: 0 auto;
+  max-width: 64px;
+  height: auto;
+}
+
+/* Shared bottom nav bar (markup shared with index.html / planet.html). */
+.site-nav {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  bottom: var(--space-6);
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2);
+  background: rgba(13, 17, 32, 0.72);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.site-nav .nav-link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: calc(var(--radius) - 4px);
+  background: transparent;
+  color: var(--text);
   font: inherit;
-}
-.grid .planets:hover, .grid .planets:focus-visible {
+  font-size: 1rem;
+  text-decoration: none;
   cursor: pointer;
-  animation: neon2 1.5s ease-in-out infinite alternate;
-  color: #ffffff;
 }
-.grid .planet li button:focus-visible, .grid button.planets:focus-visible {
-  outline: 2px solid #ffffff;
+.site-nav .nav-link:hover {
+  color: var(--accent);
+  background: var(--bg-elev);
+}
+.site-nav .nav-link[aria-current='page'] {
+  color: var(--accent);
+}
+.site-nav .nav-link:focus-visible {
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
-.grid a {
-  text-decoration: none;
-  color: white;
+
+.nav-planets {
+  position: relative;
 }
-.grid .table {
+
+.planet-menu {
   position: absolute;
-  grid-area: table;
-  color: white;
-  height: 90%;
-  width: 95%;
-  overflow-y: scroll;
+  left: 0;
+  bottom: calc(100% + var(--space-2));
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+  min-width: 180px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
-.grid .table::-webkit-scrollbar {
-  width: 10px;
+.planet-menu li + li {
+  margin-top: 2px;
 }
-.grid .table::-webkit-scrollbar-track {
-  background: #ffffff;
-  border-radius: 1em;
-}
-.grid .table::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 1em;
-}
-.grid .table::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-.grid .table table {
-  text-align: center;
+.planet-menu button {
+  display: block;
   width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: calc(var(--radius) - 6px);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.grid .table table th {
-  width: 50%;
+.planet-menu button:hover {
+  color: var(--accent);
+  background: var(--bg-elev);
 }
-@keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff, 0 0 70px #228dff, 0 0 80px #228dff, 0 0 100px #228dff, 0 0 150px #228dff;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff, 0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
-  }
-}/*# sourceMappingURL=info.css.map */
+.planet-menu button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

@@ -105,6 +105,22 @@ To get a local copy up and running follow these simple example steps.
   ```sh
   npm run dev
   ```
+- Build for production
+  ```sh
+  npm run build
+  ```
+- Preview the production build
+  ```sh
+  npm run preview
+  ```
+
+Explore the planets in 3D on the home page, read about the Solar System on the
+About page, and open any planet's detail page from the Planets menu.
+
+The feedback button (top right of the home page) opens a short rating form.
+Submitting it composes a `mailto:` message to lgf2111@gmail.com with your rating
+and comments, which opens in your default mail client — there is no separate
+results page.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
