@@ -12,27 +12,26 @@
 <body>
   <canvas id="bg"></canvas>
   <div class="feedback">
-    <button id="paper" onclick="document.querySelector('#feedback').style.display='block'" style="width:auto;"><img
+    <button id="paper" style="width:auto;"><img
         src="images/feedback.png"></button>
     <div id="feedback" class="modal">
       <div class="modal-content animate">
         <div class="cross">
-          <span onclick="document.querySelector('#feedback').style.display='none'" class="close"
-            title="Close Modal">&times;</span>
+          <span class="close" title="Close Modal">&times;</span>
         </div>
         <div class="container">
           <label for="star-rating"><b>Please rate</b></label>
           <div class="star-input">
-            <span onmouseover="rating1()" onmouseout="rating0()" onclick="rate1()" class="fa fa-star" id="star1"></span>
-            <span onmouseover="rating2()" onmouseout="rating0()" onclick="rate2()" class="fa fa-star" id="star2"></span>
-            <span onmouseover="rating3()" onmouseout="rating0()" onclick="rate3()" class="fa fa-star" id="star3"></span>
-            <span onmouseover="rating4()" onmouseout="rating0()" onclick="rate4()" class="fa fa-star" id="star4"></span>
-            <span onmouseover="rating5()" onmouseout="rating0()" onclick="rate5()" class="fa fa-star" id="star5"></span>
+            <span class="fa fa-star" id="star1"></span>
+            <span class="fa fa-star" id="star2"></span>
+            <span class="fa fa-star" id="star3"></span>
+            <span class="fa fa-star" id="star4"></span>
+            <span class="fa fa-star" id="star5"></span>
           </div>
           <label for="Feedback"><b>Feedback</b></label>
           <input type="text" id="Feedback" name="Feedback" placeholder="Type here">
           <div class="submit">
-            <button type="button" onclick="submit()">Submit</button>
+            <button type="button" id="feedback-submit">Submit</button>
           </div>
         </div>
       </div>
