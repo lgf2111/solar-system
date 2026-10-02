@@ -2,7 +2,7 @@ import '../css/main.css'
 import * as THREE from 'three';
 import {
   OrbitControls
-} from 'three/examples/jsm/controls/OrbitControls';
+} from 'three/examples/jsm/controls/OrbitControls.js';
 import sunTextureUrl from '../images/texture/sun.jpg';
 import mercuryTextureUrl from '../images/texture/mercury.jpg';
 import venusTextureUrl from '../images/texture/venus.jpg';
