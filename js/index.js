@@ -1,3 +1,4 @@
+// This nine-name list duplicates the VALID set in planet.js and must stay in sync.
 let planets = ['sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
 let planetList = document.querySelector('.planet');
 let showPlanets = false;
@@ -20,7 +21,7 @@ function togglePlanets() {
 }
 
 function openPlanetPage(planet) {
-    window.open(`planet.html?=${planet}`, '_self');
+    window.open(`planet.html?planet=${encodeURIComponent(planet)}`, '_self');
 }
 
 function handlePlanetClick(event) {

@@ -38,10 +38,12 @@
         </tr>
     </table>
     <script>
-        rating = window.location.toString().slice(window.location.toString().search('rating')+7, window.location.toString().search('rating') + 8)
-        feedback = decodeURI(window.location.toString().slice(window.location.toString().search('rating')+18))
-        document.querySelector('#rating').innerText = rating
-        document.querySelector('#feedback').innerText = feedback
+        'use strict';
+        const params = new URLSearchParams(location.search);
+        const rating = params.get('rating') ?? '';
+        const feedback = params.get('feedback') ?? '';
+        document.querySelector('#rating').textContent = rating;
+        document.querySelector('#feedback').textContent = feedback;
     </script>
 </body>
 </html>
