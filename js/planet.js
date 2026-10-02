@@ -35,6 +35,8 @@ if (!planet || !VALID.has(planet) || !planetDict[planet]) {
   spec.innerHTML =
     '<p>We could not find that planet.</p><a href="index.html">Back to The Solar System</a>';
   moreFacts?.remove();
+  // Hide the empty fun-fact panel so no blank box shows on the not-found page.
+  document.querySelector('.fact')?.remove();
 } else {
   const planetNameCapitalized = planet.charAt(0).toUpperCase() + planet.slice(1);
 
