@@ -45,7 +45,9 @@ if (!planet || !VALID.has(planet) || !planetDict[planet]) {
   title.innerText = planetNameCapitalized;
 
   // Update planet image
-  const imgUrl = new URL(`/images/planets/${planet}.png`, import.meta.url);
+  // Detail page uses the ORIGINAL photos (with their black backdrop) — the
+  // transparent cut-outs in images/planets/ are used by the About table only.
+  const imgUrl = new URL(`/images/planets-original/${planet}.png`, import.meta.url);
   img.innerHTML = `<img src="${imgUrl}" alt="${planetNameCapitalized}" width="180">`;
 
   // Update planet specifications

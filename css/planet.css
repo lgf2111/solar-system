@@ -65,10 +65,11 @@
   margin: 0;
   font-size: 2rem;
 }
-/* Planet PNGs now have real alpha transparency (black surround removed), so no
-   blend mode is needed — the planet sits cleanly on the dark page. */
+/* Detail page uses the ORIGINAL photos (black backdrop, no transparency/blend).
+   A rounded corner softens the black photo box against the dark page. */
 .content .img img {
   display: block;
+  border-radius: var(--radius);
 }
 .content .spec {
   padding: var(--space-4) var(--space-6);
