@@ -65,9 +65,12 @@
   margin: 0;
   font-size: 2rem;
 }
+/* mix-blend-mode: screen drops the image's baked-in black surround against the
+   dark page so the planet blends into space instead of sitting in a black box.
+   (No mask here: a circular mask would clip Saturn's wide ring photo.) */
 .content .img img {
   display: block;
-  border-radius: var(--radius);
+  mix-blend-mode: screen;
 }
 .content .spec {
   padding: var(--space-4) var(--space-6);

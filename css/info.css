@@ -76,34 +76,52 @@
 }
 .table table {
   width: 100%;
-  border-collapse: collapse;
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(13, 17, 32, 0.6);
+  border: 1px solid rgba(110, 168, 255, 0.25);
   border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px rgba(110, 168, 255, 0.05),
+    0 0 30px rgba(110, 168, 255, 0.08),
+    var(--shadow);
+  backdrop-filter: blur(4px);
   overflow: hidden;
 }
 .table th,
 .table td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(110, 168, 255, 0.15);
   text-align: center;
+  vertical-align: middle;
 }
 .table th {
   width: 50%;
-  background: var(--bg-elev);
-  color: var(--text);
+  background: linear-gradient(180deg, rgba(59, 74, 134, 0.5), rgba(22, 28, 51, 0.5));
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  text-shadow: 0 0 8px rgba(110, 168, 255, 0.6);
 }
 .table tbody tr:nth-child(even) {
-  background: rgba(22, 28, 51, 0.5);
+  background: rgba(22, 28, 51, 0.35);
+}
+.table tbody tr:hover {
+  background: rgba(110, 168, 255, 0.08);
 }
 .table tbody tr:last-child td {
   border-bottom: 0;
 }
+/* Fixed HEIGHT (not width) so Saturn's wide ring photo isn't shrunk to match
+   the square planet images. mix-blend-mode: screen drops the baked-in black
+   surround against the dark table so each planet blends into space. */
 .table img {
   display: block;
   margin: 0 auto;
-  max-width: 64px;
-  height: auto;
+  width: auto;
+  height: 56px;
+  mix-blend-mode: screen;
 }
 
 /* Shared bottom nav bar (markup shared with index.html / planet.html). */
