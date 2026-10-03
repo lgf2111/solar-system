@@ -114,14 +114,13 @@
   border-bottom: 0;
 }
 /* Fixed HEIGHT (not width) so Saturn's wide ring photo isn't shrunk to match
-   the square planet images. mix-blend-mode: screen drops the baked-in black
-   surround against the dark table so each planet blends into space. */
+   the square planet images. The PNGs now have real alpha transparency (black
+   surround removed), so no blend mode is needed. */
 .table img {
   display: block;
   margin: 0 auto;
   width: auto;
   height: 56px;
-  mix-blend-mode: screen;
 }
 
 /* Shared bottom nav bar (markup shared with index.html / planet.html). */
